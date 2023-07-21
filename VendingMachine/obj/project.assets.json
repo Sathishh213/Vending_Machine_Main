@@ -2641,23 +2641,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Welcome\\.nuget\\packages\\": {},
+    "C:\\Users\\raga\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Sathish\\VendingMachine\\VendingMachine\\VendingMachine\\VendingMachine.csproj",
+      "projectUniqueName": "C:\\Users\\raga\\source\\repos\\Sathishh213\\Vending_Machine_Main\\VendingMachine\\VendingMachine.csproj",
       "projectName": "VendingMachine",
-      "projectPath": "F:\\Sathish\\VendingMachine\\VendingMachine\\VendingMachine\\VendingMachine.csproj",
-      "packagesPath": "C:\\Users\\Welcome\\.nuget\\packages\\",
-      "outputPath": "F:\\Sathish\\VendingMachine\\VendingMachine\\VendingMachine\\obj\\",
+      "projectPath": "C:\\Users\\raga\\source\\repos\\Sathishh213\\Vending_Machine_Main\\VendingMachine\\VendingMachine.csproj",
+      "packagesPath": "C:\\Users\\raga\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\raga\\source\\repos\\Sathishh213\\Vending_Machine_Main\\VendingMachine\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Welcome\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\raga\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2666,6 +2666,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
