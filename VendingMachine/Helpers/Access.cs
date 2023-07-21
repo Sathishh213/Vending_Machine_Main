@@ -12,7 +12,7 @@ namespace VendingMachine.Helpers
 
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        private string ConnectionString = "server=127.0.0.1;user id=nsathishkumar;password=Sathish@21;database=product_store";
+        private string ConnectionString = "server=127.0.0.1;user id=root;password=Deepan@123;database=product_store";
 
         public string GetDeviceLoginId()
         {
