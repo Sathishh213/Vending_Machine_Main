@@ -10,7 +10,7 @@ namespace VendingMachine.Helpers
     public static class Hardware
     {
         //public static string[] duo = SerialPort.GetPortNames();
-        public static string vending_port = "COM7";// replace Com port no
+        public static string vending_port = "COM3";// replace Com port no
         public static int vending_BaudRate = 9600;
         public static int vending_DataBits = 8;
         public static Parity vending_Parity = Parity.None;
