@@ -24,9 +24,9 @@
             <Grid Height="1080" VerticalAlignment="Top">
                 <Image Source="Images/Logo.png" Height="50" VerticalAlignment="Top" Margin="20,10,0,0" HorizontalAlignment="Left" />
                 <Image  Source="Images/Logo.png" Height="100" VerticalAlignment="Top"  Margin="0,10,20,0"  HorizontalAlignment="Right" />
-                <Button  Name="btnBack" Margin="20,10,150,30" Click="btnBack_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Padding="0"   Width="100" Height="100"   Grid.ZIndex="999" Style="{StaticResource MaterialDesignFloatingActionButton}" >
+                <!--<Button  Name="btnBack" Margin="20,10,150,30" Click="btnBack_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Padding="0"   Width="100" Height="100"   Grid.ZIndex="999" Style="{StaticResource MaterialDesignFloatingActionButton}" >
                     <md:PackIcon Kind="ChevronLeft" Width="80" Height="80" />
-                </Button>
+                </Button>-->
             </Grid>
             <Grid>
                 <Grid.RowDefinitions>
@@ -210,8 +210,11 @@
 
                                 <TextBlock Name="lblExpireDate" Text="" TextAlignment="Left" TextWrapping="Wrap" FontSize="15" FontWeight="Normal" Margin="30,0,0,0" />
 
-                                <Button Name="btnSave" Content="SAVE REFILL" Margin="10,0" Click="btnSaveAll_Click" FontSize="30" FontWeight="Bold" Width="200" Height="80" Style="{StaticResource MaterialDesignRaisedButton}" />
+                                <Button Name="btnSave" VerticalContentAlignment="Center" Content="SAVE REFILL" Margin="10,0" Click="btnSaveAll_Click" FontSize="30" FontWeight="Bold" Width="200" Height="50" Style="{StaticResource MaterialDesignRaisedButton}" />
 
+                                <Button Name="btnBack" Click="btnBack_Click" Margin="20,25" Padding="0" FontSize="30" Width="50" Height="50" HorizontalAlignment="Center" Grid.ZIndex="999" Style="{StaticResource MaterialDesignFloatingActionButton}" >
+                                    <md:PackIcon Kind="ChevronLeft" Width="50" Height="40" />
+                                </Button>
                             </StackPanel>
 
 
