@@ -114,7 +114,6 @@ namespace VendingMachine
 
                 txtProduct.Text = dt.Rows[itm_index]["Product"].ToString();
                 txtPrice.Text = dt.Rows[itm_index]["Price"].ToString();
-                IsFreeCheck.IsChecked = Convert.ToBoolean(dt.Rows[itm_index]["IsFree"]);
                 if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + dt.Rows[itm_index]["img_path"].ToString()))
                 {
                     pbPhoto.Source = new BitmapImage(new Uri(AppDomain.CurrentDomain.BaseDirectory + dt.Rows[itm_index]["img_path"].ToString()));
@@ -198,12 +197,12 @@ namespace VendingMachine
 
                 if (product_id > 0)
                 {
-                    cmd = @"update mst_product p set  p.product_name = '" + product_name + "', p.price = '" + price + "', IsFree = " + Convert.ToInt32(IsFreeCheck.IsChecked) + " , p.img_path = '" + imgPath.Replace("\\", "\\\\") + "' , p.is_viewed = 0 , p.updatedby = '" + logid + "' , p.updatedon = now()   where p.product_id = " + product_id;
+                    cmd = @"update mst_product p set  p.product_name = '" + product_name + "', p.price = '" + price + " , p.img_path = '" + imgPath.Replace("\\", "\\\\") + "' where p.product_id = " + product_id;
                 }
                 else
                 {
-                    cmd = @"insert into mst_product(product_name ,  price , IsFree , img_path, updatedby , updatedon) 
-                            values( '" + product_name + "' , '" + price + "' , " + Convert.ToInt32(IsFreeCheck.IsChecked) + " , '" + imgPath.Replace("\\", "\\\\") + "' , '" + logid + "' , now()  )";
+                    cmd = @"insert into mst_product(product_name ,  price , img_path) 
+                            values( '" + product_name + "' , '" + price + "' , '" + imgPath.Replace("\\", "\\\\") + "')";
                 }
                 int exe = Convert.ToInt16(acc.ExecuteCmd(cmd));
 
@@ -236,7 +235,7 @@ namespace VendingMachine
             {
                 if (product_id > 0)
                 {
-                    string cmd = "update mst_product set IsActive = 0 , is_viewed = 0 , updatedon = now() where machine_id = " + config.machine_id + " and product_id = " + product_id;
+                    string cmd = "delete from mst_product where product_id = " + product_id;
                     acc.ExecuteCmd(cmd);
                     Clear();
                     Filldgv();
@@ -257,9 +256,9 @@ namespace VendingMachine
         {
             try
             {
-                //frmEmployeeHome frm = new frmEmployeeHome();
+                frmAdminControl frm = new frmAdminControl();
                 this.Close();
-                //frm.Show();
+                frm.Show();
             }
             catch (Exception ex)
             {
@@ -286,7 +285,6 @@ namespace VendingMachine
             txtPrice.Text = "";
             pbPhoto.Source = null;
             image_upload = false;
-            IsFreeCheck.IsChecked = false;
             txtProduct.Focus();
         }
 
@@ -298,8 +296,7 @@ namespace VendingMachine
             dgStock.Columns.Clear();
 
             string cmd = @"select p.Product_id , 0 as SNo , p.product_name 'Product' ,   p.Price , img_path
-                            from mst_product p 
-                            where p.IsActive = 1 and machine_id = " + config.machine_id;
+                            from mst_product p ";
 
             dt = acc.GetTable(cmd);
 
