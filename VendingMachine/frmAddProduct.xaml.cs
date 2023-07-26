@@ -195,14 +195,16 @@ namespace VendingMachine
                     }
                 }
 
+                int default_stock = 20; int default_soldout = 0;
+
                 if (product_id > 0)
                 {
                     cmd = @"update mst_product p set  p.product_name = '" + product_name + "', p.price = '" + price + " , p.img_path = '" + imgPath.Replace("\\", "\\\\") + "' where p.product_id = " + product_id;
                 }
                 else
                 {
-                    cmd = @"insert into mst_product(product_name ,  price , img_path) 
-                            values( '" + product_name + "' , '" + price + "' , '" + imgPath.Replace("\\", "\\\\") + "')";
+                    cmd = @"insert into mst_product(product_name ,  price , img_path , stock , soldout) 
+                            values( '" + product_name + "' , '" + price + "' , '" + imgPath.Replace("\\", "\\\\") + "' , " + default_stock + " , "+ default_soldout + ")";
                 }
                 int exe = Convert.ToInt16(acc.ExecuteCmd(cmd));
 
