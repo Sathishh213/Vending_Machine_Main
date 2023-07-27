@@ -24,7 +24,7 @@
             <Grid Grid.ZIndex="1000" >
 
                 <!--<Image Source="Images/arokyalogo.jpg" Height="100" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,10,50,0"  />-->
-                <Image  Source="Images/Logo.png" Height="100" VerticalAlignment="Top"  Margin="0,10,20,0"  HorizontalAlignment="Right" />
+               <!-- <Image  Source="Images/Logo.png" Height="100" VerticalAlignment="Top"  Margin="0,10,20,0"  HorizontalAlignment="Right" />-->
                 <TextBlock Text="gurukshetra.co.in" VerticalAlignment="Bottom" TextAlignment="Center" FontSize="20"   Foreground="White" FontWeight="Bold"  />
                 <Button  Name="btnBack" Margin="20,10" Click="btnBack_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0"   Width="100" Height="100"   Grid.ZIndex="999" Style="{StaticResource MaterialDesignFloatingActionButton}" >
                     <md:PackIcon Kind="ChevronLeft" Width="80" Height="80" />
@@ -37,33 +37,33 @@
                     <ColumnDefinition Width="20"/>
                     <ColumnDefinition Width="280"/>
                 </Grid.ColumnDefinitions>
-                <DockPanel Grid.Column="0" Margin="10,20">
-                    <ListView x:Name="MyList"  Background="Transparent" BorderThickness="0" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Hidden" >
+                <DockPanel Grid.Column="0" Margin="0,0">
+                    <ListView x:Name="MyList"  Background="Transparent" BorderThickness="0" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Visible"  >
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <UniformGrid Columns="5" />
+                                <UniformGrid Columns="7" />
                             </ItemsPanelTemplate>
                         </ListView.ItemsPanel>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Button Tag="{Binding product_id}"  Width="250" Height="330" Margin="0,25" Padding="1" md:ShadowAssist.ShadowDepth="Depth3" Background="White" BorderBrush="White" BorderThickness="2" Click="btnItem_Click" >
+                                <Button Tag="{Binding product_id}"  Width="150" Height="100" Margin="0,5,0,0" Padding="1" md:ShadowAssist.ShadowDepth="Depth3" Background="White" BorderBrush="White" BorderThickness="2" Click="btnItem_Click" >
                                     <Button.Content>
                                         <StackPanel>
                                             <Grid>
-                                                <TextBlock Text="{Binding offer}"   Visibility="{Binding show_offer}"  FontSize="25" Background="#C6000000" Foreground="White" VerticalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow" />
+                                                <TextBlock Text="{Binding offer}"   Visibility="{Binding show_offer}"  FontSize="10" Background="#C6000000" Foreground="White" VerticalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWithOverflow" />
 
-                                                <Border CornerRadius="5"  Width="250" Height="330"  Opacity="{Binding opacity}" BorderBrush="Transparent" BorderThickness="0">
+                                                <Border CornerRadius="5"  Width="150" Height="100"  Opacity="{Binding opacity}" BorderBrush="Transparent" BorderThickness="0">
                                                     <Border.Background>
                                                         <ImageBrush  Stretch="Fill" ImageSource="{Binding img_path}"   />
                                                     </Border.Background>
 
 
-                                                    <Grid VerticalAlignment="Bottom" MinHeight="70"  Margin="0,0,0,5" Background="#C6000000">
+                                                    <Grid VerticalAlignment="Bottom" MinHeight="25"  Margin="0,0,0,0" Background="#C6000000">
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="20"/>
                                                             <ColumnDefinition Width="*"/>
                                                             <ColumnDefinition Width="5"/>
-                                                            <ColumnDefinition Width="100"/>
+                                                            <ColumnDefinition Width="50"/>
                                                         </Grid.ColumnDefinitions>
 
                                                         <!--<DockPanel Grid.Column="0">
@@ -74,18 +74,18 @@
 
                                                         <DockPanel Grid.Column="1" >
                                                             <Grid>
-                                                                <Image   Height="25"  Stretch="Fill" Source="{Binding tamil_path }" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                                                                <TextBlock Text="{Binding product_name}" Foreground="White" FontSize="18" FontWeight="Normal" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                                                <Image   Height="15"  Stretch="Fill" Source="{Binding tamil_path }" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                                                                <TextBlock Text="{Binding product_name}" Foreground="White" FontSize="10" FontWeight="Normal" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left" />
                                                             </Grid>
                                                         </DockPanel>
 
                                                         <DockPanel Grid.Column="2" >
-                                                            <Border BorderThickness="1" CornerRadius="20" Background="White" Margin="1,4,3,1" />
+                                                            <Border BorderThickness="1" CornerRadius="10" Background="White" Margin="1,2,1,1" />
                                                         </DockPanel>
 
                                                         <WrapPanel  Grid.Column="3"  Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center" >
-                                                            <TextBlock Text="₹ " Foreground="White" FontSize="18" FontWeight="Normal" TextWrapping="Wrap" />
-                                                            <TextBlock Text="{Binding price}" Foreground="White" FontSize="18" FontWeight="Normal" TextWrapping="Wrap" />
+                                                            <TextBlock Text="₹ " Foreground="White" FontSize="10" FontWeight="Normal" TextWrapping="Wrap" />
+                                                            <TextBlock Text="{Binding price}" Foreground="White" FontSize="11" FontWeight="Normal" TextWrapping="Wrap" />
                                                         </WrapPanel>
 
                                                     </Grid>
@@ -123,9 +123,8 @@
 
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="170"/>
+                            <RowDefinition Height="50"/>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="100"/>
                             <RowDefinition Height="100"/>
                             <RowDefinition Height="100" />
                         </Grid.RowDefinitions>
@@ -141,22 +140,22 @@
                                 </ListView.ItemsPanel>
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <Border BorderThickness="2" CornerRadius="5" BorderBrush="White" Margin="5" >
+                                        <Border BorderThickness="2" CornerRadius="5" Height="100" BorderBrush="White" Margin="5" >
                                             <Border.Background>
                                                 <ImageBrush ImageSource="{Binding img_path, Mode=OneWay}" />
                                             </Border.Background>
-                                            <DockPanel  Width="180" Height="180" Tag="{Binding product_id}" Background="#7F171717">
+                                            <DockPanel  Width="180" Height="50" Tag="{Binding product_id}" Background="#7F171717">
                                                 <Grid>
                                                     <Grid.RowDefinitions>
-                                                        <RowDefinition Height="30"/>
+                                                        <RowDefinition Height="10"/>
                                                         <RowDefinition Height="*"/>
-                                                        <RowDefinition Height="75"/>
-                                                        <RowDefinition Height="30"/>
-                                                        <RowDefinition Height="30"/>
+                                                        <RowDefinition Height="20"/>
+                                                        <RowDefinition Height="20"/>
+                                                        <RowDefinition Height="20"/>
                                                     </Grid.RowDefinitions>
 
                                                     <DockPanel Grid.Row="0">
-                                                        <TextBlock Text="{Binding product_name}" FontSize="15" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#FFFFCC33" />
+                                                        <TextBlock Text="{Binding product_name}" FontSize="5" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#FFFFCC33" />
                                                     </DockPanel>
                                                     <DockPanel Grid.Row="2">
                                                         <Grid >
@@ -166,28 +165,28 @@
                                                                 <ColumnDefinition Width="5*"/>
                                                             </Grid.ColumnDefinitions>
 
-                                                            <Button Grid.Column="0"  Tag="{Binding product_id}"    Style="{StaticResource MaterialDesignFloatingActionDarkButton}" VerticalAlignment="Center" Click="btnLess_Click">
-                                                                <md:PackIcon  Kind="Minus" Height="24" Width="24" />
+                                                            <Button Grid.Column="0"  Tag="{Binding product_id}"    Style="{StaticResource MaterialDesignFloatingActionDarkButton}" VerticalAlignment="Bottom" Click="btnLess_Click">
+                                                                <md:PackIcon  Kind="Minus" Height="14" Width="14" />
                                                             </Button>
 
-                                                            <TextBlock   Grid.Column="1"  Name="lblQty"  Tag="{Binding product_id}" Text="{Binding qty}"  FontSize="30" TextAlignment="Center" VerticalAlignment="Center"  Foreground="White" />
+                                                            <TextBlock   Grid.Column="1"  Name="lblQty"  Tag="{Binding product_id}" Text="{Binding qty}"  FontSize="10" TextAlignment="Center" VerticalAlignment="Bottom"  Foreground="White" />
 
-                                                            <Button  Grid.Column="2"   Tag="{Binding product_id}"   Style="{StaticResource MaterialDesignFloatingActionDarkButton}" Click="btnAdd_Click" VerticalAlignment="Center">
-                                                                <md:PackIcon  Kind="Plus" Height="24" Width="24" />
+                                                            <Button  Grid.Column="2"   Tag="{Binding product_id}"   Style="{StaticResource MaterialDesignFloatingActionDarkButton}" Click="btnAdd_Click" VerticalAlignment="Bottom">
+                                                                <md:PackIcon  Kind="Plus" Height="7" Width="7" />
                                                             </Button>
 
                                                         </Grid>
                                                     </DockPanel>
                                                     <DockPanel Grid.Row="3">
-                                                        <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                                                            <TextBlock FontSize="14" FontWeight="Bold" Foreground="#FFFFCC33" Text="Rs."/>
-                                                            <TextBlock FontSize="15" FontWeight="Bold" Foreground="#FFFFCC33" Text="{Binding amt}"/>
-                                                            <TextBlock FontSize="14" FontWeight="Bold" Foreground="#FFFFCC33" Text="/-"/>
+                                                        <WrapPanel VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                                                            <TextBlock FontSize="5" FontWeight="Bold" Foreground="#FFFFCC33" Text="Rs."/>
+                                                            <TextBlock FontSize="5" FontWeight="Bold" Foreground="#FFFFCC33" Text="{Binding amt}"/>
+                                                            <TextBlock FontSize="5" FontWeight="Bold" Foreground="#FFFFCC33" Text="/-"/>
                                                         </WrapPanel>
                                                     </DockPanel>
                                                     <DockPanel Grid.Row="4">
 
-                                                        <Button   Name="btnRemove" Content="REMOVE"  Tag="{Binding product_id}" Click="btnRemove_Click"    Style="{StaticResource MaterialDesignRaisedDarkButton}"   Margin="5,0" FontSize="12"   Width="100" />
+                                                        <Button   Name="btnRemove" Content="REMOVE"  Tag="{Binding product_id}" Click="btnRemove_Click"    Style="{StaticResource MaterialDesignRaisedDarkButton}"   Margin="5,0" FontSize="7"   Width="100" />
 
                                                     </DockPanel>
                                                 </Grid>
@@ -214,7 +213,7 @@
                             </ListView>
                         </DockPanel>
 
-                        <DockPanel Grid.Row="3">
+                        <DockPanel Grid.Row="2">
                             <Grid Margin="20,10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto"/>
@@ -250,7 +249,7 @@
 
                         </DockPanel>-->
 
-                        <DockPanel Grid.Row="4">
+                        <DockPanel Grid.Row="3">
 
                             <Button Name="btnUPI" Click="btnUPI_Click"   FontSize="30" FontWeight="Bold"  Padding="0"   Width="275" Height="80" Style="{StaticResource MaterialDesignRaisedButton}" >
                                 <StackPanel  VerticalAlignment="Center" >

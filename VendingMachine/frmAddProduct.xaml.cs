@@ -199,7 +199,7 @@ namespace VendingMachine
 
                 if (product_id > 0)
                 {
-                    cmd = @"update mst_product p set  p.product_name = '" + product_name + "', p.price = '" + price + " , p.img_path = '" + imgPath.Replace("\\", "\\\\") + "' where p.product_id = " + product_id;
+                    cmd = @"update mst_product p set  p.product_name = '" + product_name + "', p.price = '" + price + "' , p.img_path = '" + imgPath.Replace("\\", "\\\\") + "' where p.product_id = " + product_id;
                 }
                 else
                 {

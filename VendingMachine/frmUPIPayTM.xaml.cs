@@ -339,10 +339,10 @@ namespace VendingMachine
             }
         }
 
-        private void btnBack_Click(object sender, RoutedEventArgs e)
-        {
-            Goback();
-        }
+     //   private void btnBack_Click(object sender, RoutedEventArgs e)
+       // {
+         //   Goback();
+        //}
 
         private void Goback()
         {
