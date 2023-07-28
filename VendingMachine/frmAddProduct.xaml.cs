@@ -493,7 +493,7 @@ namespace VendingMachine
         {
             try
             {
-                if (Keyboard.IsKeyDown(Key.G))
+                if (Keyboard.IsKeyDown(Key.LeftShift) && Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.G))
                 {
                     if (e.Key == Key.G)
                     {

@@ -396,5 +396,15 @@ namespace VendingMachine
                 log.Error(ex);
             }
         }
+
+        private void VidPlayer_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            VidPlayer.Position = TimeSpan.FromSeconds(0);
+        }
+
+        private void VidPlayer_Loaded(object sender, RoutedEventArgs e)
+        {
+            VidPlayer.Play();
+        }
     }
 }
