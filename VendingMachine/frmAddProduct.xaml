@@ -81,7 +81,7 @@
                                     </WrapPanel>
                                 </DockPanel>
                                 <DockPanel Grid.Row="1">
-                                    <DataGrid x:Name="dgStock"  Margin="10,10,50,50" Background="White"   FontSize="20" CanUserAddRows="False" CanUserDeleteRows="False" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" SelectionMode="Single" SelectionUnit="FullRow" SelectionChanged="dgStock_SelectionChanged"  >
+                                    <DataGrid x:Name="dgStock"  Margin="10,10,50,50" Background="White" Height="250"  FontSize="20" CanUserAddRows="False" CanUserDeleteRows="False" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ColumnWidth="*" SelectionMode="Single" SelectionUnit="FullRow" SelectionChanged="dgStock_SelectionChanged"  >
                                         <DataGrid.RowStyle>
                                             <Style TargetType="DataGridRow">
                                                 <Setter Property="Background" Value="Transparent" />

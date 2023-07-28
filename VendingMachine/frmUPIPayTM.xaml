@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VendingMachine"
         mc:Ignorable="d"
-        Title="frmUPIPayTM" Height="1080" Width="1920"  WindowState="Maximized" ResizeMode="NoResize" PreviewKeyDown="Window_PreviewKeyDown"
+        Title="frmUPIPayTM" Height="768" Width="1366"  WindowState="Maximized" ResizeMode="NoResize" PreviewKeyDown="Window_PreviewKeyDown"
         Foreground="White" FontSize="25" FontWeight="Bold"  
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" 
         Topmost="True"  
@@ -14,43 +14,44 @@
         <ImageBrush ImageSource="Images/Oreo.jpg"/>
     </Window.Background>
     <md:DialogHost Identifier="frmDialog" >
-        <md:DialogHost.DialogContent>
+      <!--  <md:DialogHost.DialogContent>
             <StackPanel>
             </StackPanel>
-        </md:DialogHost.DialogContent>
+        </md:DialogHost.DialogContent> -->
+
         <Grid Background="#C8000000">
             <Grid>
 
                 <Image  Source="Images/Logo.png" Height="100" VerticalAlignment="Top"  Margin="0,10,20,0"  HorizontalAlignment="Right" />
-                
+
                 <!--<Button  Name="btnBack" Margin="20,10" Click="btnBack_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0"   Width="100" Height="100" Style="{StaticResource MaterialDesignFloatingActionButton}" >
                     <md:PackIcon Kind="ChevronLeft" Width="100" Height="100" />
                 </Button>-->
 
             </Grid>
             <StackPanel Orientation="Horizontal">
-                <StackPanel Height="960">
+                <StackPanel Height="766" Width="700">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="20"/>
-                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="600"/>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="90"/>
                         </Grid.RowDefinitions>
 
 
                         <DockPanel Grid.Row="0" >
-                            <TextBlock x:Name="lblMessage" Text="" FontSize="45" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock x:Name="lblMessage" Text="" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </DockPanel>
 
                         <DockPanel Grid.Row="1">
                             <StackPanel>
 
-                                <TextBlock x:Name="lblUserMessage" TextAlignment="Center" >Please wait</TextBlock>
-                                <Image Source="Images\upi.jpg" Stretch="Uniform" Height="100" Margin="10,0" />
-                                <ProgressBar Name="Pbstatus" Width="100" Height="100"   Style="{StaticResource MaterialDesignCircularProgressBar}"   Value="35"  IsIndeterminate="True" />
-                                <Label Content="Payment Completion May take Upto 2 Minutes...Please Wait..." VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Normal" Foreground="#DDF3FF1B"/>
-                                <Image x:Name="img_QR" Width="250" Height="250" Margin="0,50,0,30" />
+                                <TextBlock x:Name="lblUserMessage" TextAlignment="Center" Height="35" >Please wait</TextBlock>
+                                <Image Source="Images\upi.jpg" Stretch="Uniform" Height="40" Margin="10,0" />
+                                <ProgressBar Name="Pbstatus" Width="100" Height="25"   Style="{StaticResource MaterialDesignCircularProgressBar}"   Value="35"  IsIndeterminate="True" />
+                                <Label Content="Payment Completion May take Upto 2 Minutes...Please Wait..." Margin="0,65,0,0" HorizontalAlignment="Center" FontWeight="Normal" Foreground="#DDF3FF1B" Height="43"/>
+                                <Image x:Name="img_QR" Width="200" Height="150" Margin="0,0,0,30" />
 
                                 <Grid x:Name="dgTimer" Width="200" Height="200">
                                     <Grid>
@@ -72,18 +73,32 @@
                         </DockPanel>
 
 
-                        <DockPanel Grid.Row="7">
-                            <TextBlock Text="gurukshetra.co.in" FontSize="16" HorizontalAlignment="Center"  VerticalAlignment="Bottom" Foreground="White" FontWeight="Bold" />
+                        <DockPanel Grid.Row="3">
+                            <TextBlock Text="gurukshetra.co.in" FontSize="17" Height="40" HorizontalAlignment="Center"  VerticalAlignment="Bottom" Foreground="White" FontWeight="Bold" />
                         </DockPanel>
                     </Grid>
                 </StackPanel>
+
+                <StackPanel Width="40">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                        </Grid.ColumnDefinitions>
+                        <DockPanel Grid.Column="0">
+                            <Border BorderThickness="1" Height="1080" CornerRadius="20" Background="Gray" Margin="8,20,8,20" />
+                        </DockPanel>
+                    </Grid>
                 </StackPanel>
-    
-                <StackPanel>
-                    
+
+                <StackPanel Height="760" Width="626">
+                    <Grid Height="630" Margin="0,100,0,0">
+                        <MediaElement Name="VidPlayer" HorizontalAlignment="Left" Height="650" Stretch="Fill" Width="700" Source="AdImages\AdJewllery\jewellery.mp4"   LoadedBehavior="Manual" Loaded="VidPlayer_Loaded" MediaEnded="VidPlayer_MediaEnded" VerticalAlignment="Bottom"  Canvas.Top="40"></MediaElement>
+                    </Grid>
+                </StackPanel>
+
             </StackPanel>
-            
-            
+
+
 
         </Grid>
     </md:DialogHost>
