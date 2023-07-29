@@ -13,7 +13,7 @@
     <Window.Background>
         <ImageBrush ImageSource="Images/Oreo.jpg"/>
     </Window.Background>
-    <Grid>
+    <Grid Background="#C8000000">
         <DockPanel Grid.Row="0">
             <TextBlock Text="ADMIN CONTROLS" FontSize="25" FontWeight="Bold" TextAlignment="Center" Width="500" Height="50" VerticalAlignment="Top" OpacityMask="Black" Foreground="#FF08090C" />
         </DockPanel>

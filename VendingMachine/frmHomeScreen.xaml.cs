@@ -25,11 +25,47 @@ namespace VendingMachine
     /// </summary>
     public partial class frmHomeScreen : Window
     {
+        private List<string> imagePaths; // List to store the image file paths
+        private int currentIndex = 0; // Index of the currently displayed image
+        private DispatcherTimer timer; // Timer for automatic slideshow
         public frmHomeScreen()
         {
             InitializeComponent();
+            imagePaths = new List<string>
+            {
+                "AdImages/home/101.png",
+                "AdImages/home/102.png",
+                "AdImages/home/103.jpg",
+                "AdImages/home/104.jpg",
+                "AdImages/home/105.jpg",// Replace with the actual names of your image files
+                
+                // Add more image paths as needed
+            };
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(5); // Set the time interval between slides (5 seconds in this example)
+            timer.Tick += Timer_Tick;
+            timer.Start();
+
+            // Display the first image
+            ShowImage(currentIndex);
         }
 
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            // Move to the next image in the list
+            currentIndex++;
+            if (currentIndex >= imagePaths.Count)
+                currentIndex = 0;
+
+            // Display the next image
+            ShowImage(currentIndex);
+        }
+        private void ShowImage(int index)
+        {
+            // Load the image from the file path and set it as the source for the Image control
+            BitmapImage image = new BitmapImage(new Uri(imagePaths[index], UriKind.Relative));
+            imageControl.Source = image;
+        }
 
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
