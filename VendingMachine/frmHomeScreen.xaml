@@ -7,7 +7,7 @@
        xmlns:localmodel="clr-namespace:VendingMachine.Helpers"
         mc:Ignorable="d"
         Title="frmHomeScreen" 
-        Height="768" Width="1366"  WindowState="Maximized" ResizeMode="NoResize" 
+        Height="1080" Width="1920"  WindowState="Maximized" ResizeMode="NoResize" 
         Foreground="White" FontSize="30" FontWeight="Bold" Topmost="True" Loaded="Window_Loaded" PreviewKeyDown="Window_PreviewKeyDown">
     <Window.Resources>
 

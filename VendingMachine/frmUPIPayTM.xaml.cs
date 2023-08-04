@@ -380,7 +380,7 @@ namespace VendingMachine
         {
             try
             {
-                if (Keyboard.IsKeyDown(Key.G))
+                if (Keyboard.IsKeyDown(Key.LeftShift) && Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.G))
                 {
                     if (e.Key == Key.G)
                     {
@@ -397,14 +397,6 @@ namespace VendingMachine
             }
         }
 
-        private void VidPlayer_MediaEnded(object sender, RoutedEventArgs e)
-        {
-            VidPlayer.Position = TimeSpan.FromSeconds(0);
-        }
-
-        private void VidPlayer_Loaded(object sender, RoutedEventArgs e)
-        {
-            VidPlayer.Play();
-        }
+      
     }
 }

@@ -26,11 +26,6 @@ namespace VendingMachine
     public partial class frmOrderConfirmation : Window
     {
 
-
-        private List<string> imagePaths; // List to store the image file paths
-        private int currentIndex = 0; // Index of the currently displayed image
-        private DispatcherTimer timer; // Timer for automatic slideshow
-
         ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         Access acc = new Access();
@@ -40,48 +35,9 @@ namespace VendingMachine
         public frmOrderConfirmation()
         {
             InitializeComponent();
-            // Add image file paths to the list
-            imagePaths = new List<string>
-            {
-                "AdImages/11.jpg", // Replace with the actual names of your image files
-                "AdImages/12.jpg",
-                "AdImages/13.jpg",
-                "AdImages/14.jpg",
-                "AdImages/15.jpg",
-                "AdImages/16.jpg",
-                "AdImages/17.jpg",
-                "AdImages/18.jpg",
-                "AdImages/19.jpg",
-                "AdImages/20.jpg",
-                // Add more image paths as needed
-            };
-
-            // Initialize the timer for automatic slideshow
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(5); // Set the time interval between slides (5 seconds in this example)
-            timer.Tick += Timer_Tick;
-            timer.Start();
-
-            // Display the first image
-            ShowImage(currentIndex);
-
+         
         }
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            // Move to the next image in the list
-            currentIndex++;
-            if (currentIndex >= imagePaths.Count)
-                currentIndex = 0;
-
-            // Display the next image
-            ShowImage(currentIndex);
-        }
-        private void ShowImage(int index)
-        {
-            // Load the image from the file path and set it as the source for the Image control
-            BitmapImage image = new BitmapImage(new Uri(imagePaths[index], UriKind.Relative));
-            imageControl.Source = image;
-        }
+       
 
         private void btnPayment_Click(object sender, RoutedEventArgs e)
         {
@@ -128,7 +84,7 @@ namespace VendingMachine
         {
             try
             {
-                if (Keyboard.IsKeyDown(Key.G))
+                if (Keyboard.IsKeyDown(Key.LeftShift) && Keyboard.IsKeyDown(Key.LeftCtrl) && Keyboard.IsKeyDown(Key.G))
                 {
                     if (e.Key == Key.G)
                     {

@@ -149,7 +149,7 @@
                 </DockPanel>
                 <DockPanel Grid.Row="5" >
                     <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock Text="gurukshetra.co.in" VerticalAlignment="Center" FontSize="30" FontWeight="Bold"   />
+                        <TextBlock Text="gurukshetra.co.in" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Background="#C8000000"  />
                     </WrapPanel>
                 </DockPanel>
             </Grid>
