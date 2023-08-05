@@ -15,4 +15,13 @@
         public string img_path { get; set; }
         public int vend { get; set; }
     }
+
+    public class product_lineItem
+    {
+        public int product_id { get; set; }
+        public string product_name { get; set; }
+        public decimal price { get; set; }
+        public int quantity { get; set; }
+        
+    }
 }

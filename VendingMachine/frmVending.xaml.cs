@@ -353,11 +353,19 @@ namespace VendingMachine
                     total_vended = (from k in config.ordered select k.amt).Sum();
                     log.Info("Total Vended Qty : " + t_qty + " Amt : " + total_vended);
 
+                    List<product_lineItem> product_LineItems = new List<product_lineItem>();
+                    for (int i = 0; i < config.ordered.Count; i++)
+                    {
+                        product_lineItem product = new product_lineItem { price = config.ordered[i].price, product_id = config.ordered[i].product_id, product_name = config.ordered[i].product_name, quantity = config.ordered[i].qty };
+                        product_LineItems.Add(product);
+                    }
+                    string product_LineItems_JsonData = JsonConvert.SerializeObject(product_LineItems);
 
                     if (t_qty > 0)
                     {
-                        //cmd = "update tbl_sales s set s.total = " + total_vended + " where s.IsActive = 1 and s.sales_code = '" + config.sales_code + "'";
-                        //acc.ExecuteCmd(cmd);
+                        cmd = @"insert into sales_order(product_lineitems, total_amount , total_quantity , order_datetime , payment_method , transaction_id, machine_id) 
+                                value ('" + product_LineItems_JsonData + "' ," + total_vended + "," + t_qty + ",now() ,'" + config.inmode + "','" + config.paytm_upi_txnId + "','" + config.machine_id + "' )";
+                        acc.ExecuteCmd(cmd);
                         //LEDOn();
                     }
                     bal = (int)(config.in_amt - total_vended);
