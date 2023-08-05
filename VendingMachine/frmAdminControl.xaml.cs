@@ -39,7 +39,9 @@ namespace VendingMachine
 
         private void btnReport_Click(object sender, RoutedEventArgs e)
         {
-
+            frmReport frmReport = new frmReport();
+            this.Close();
+            frmReport.Show();
         }
 
         private void btnGotoHome_Click(object sender, RoutedEventArgs e)
