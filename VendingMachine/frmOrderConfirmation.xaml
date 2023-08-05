@@ -13,11 +13,11 @@
     <Window.Background>
         <ImageBrush ImageSource="Images/Oreo.jpg"/>
     </Window.Background>
-    <Grid>
+    <Grid Background="#C8000000">
         <StackPanel Orientation="Horizontal">
             <StackPanel  Height="768">
                 <Grid Width="683">
-                    <Image x:Name="imageControl" Stretch="UniformToFill"  Height="768" Width="683" />
+                    <Image x:Name="imageControl" Stretch="Fill" Margin="20,0,0,0" Height="768" Width="683" />
 
                     <Button  Name="btnBack" Margin="20,10,15,25" Click="btnBack_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0"   Width="100" Height="100"   Grid.ZIndex="999" Style="{StaticResource MaterialDesignFloatingActionButton}" >
                         <md:PackIcon Kind="ChevronLeft" Width="80" Height="80" />

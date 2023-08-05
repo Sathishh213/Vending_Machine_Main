@@ -25,11 +25,16 @@ namespace VendingMachine
     /// </summary>
     public partial class frmHomeScreen : Window
     {
+        private List<string> imagePaths; // List to store the image file paths
+        private int currentIndex = 0; // Index of the currently displayed image
+        private DispatcherTimer timer; // Timer for automatic slideshow
         public frmHomeScreen()
         {
             InitializeComponent();
+           
         }
 
+        
 
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
