@@ -65,5 +65,17 @@
     <Setting Name="paytm_version" Type="System.String" Scope="User">
       <Value Profile="(Default)">v1</Value>
     </Setting>
+    <Setting Name="FromMailAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">varsjacob@gmail.com</Value>
+    </Setting>
+    <Setting Name="ToMailAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Sathishkumarr2168@gmail.com</Value>
+    </Setting>
+    <Setting Name="SMTPClientAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">smtp.gmail.com</Value>
+    </Setting>
+    <Setting Name="SMTPAppPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">goqvzhsvdxesivyr</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -275,5 +275,53 @@ namespace VendingMachine.Properties {
                 this["paytm_version"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("varsjacob@gmail.com")]
+        public string FromMailAddress {
+            get {
+                return ((string)(this["FromMailAddress"]));
+            }
+            set {
+                this["FromMailAddress"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Sathishkumarr2168@gmail.com")]
+        public string ToMailAddress {
+            get {
+                return ((string)(this["ToMailAddress"]));
+            }
+            set {
+                this["ToMailAddress"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("smtp.gmail.com")]
+        public string SMTPClientAddress {
+            get {
+                return ((string)(this["SMTPClientAddress"]));
+            }
+            set {
+                this["SMTPClientAddress"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("goqvzhsvdxesivyr")]
+        public string SMTPAppPassword {
+            get {
+                return ((string)(this["SMTPAppPassword"]));
+            }
+            set {
+                this["SMTPAppPassword"] = value;
+            }
+        }
     }
 }

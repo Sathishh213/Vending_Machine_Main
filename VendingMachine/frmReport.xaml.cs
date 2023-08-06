@@ -56,7 +56,7 @@ namespace VendingMachine
                 if (dt.Rows.Count > 0)
                 {
                     string filename =  ExportToExcel(dt,"Stock");
-                    SendThroughMail(filename);
+                    SendThroughMail(filename, "Stock");
                 }
             }
             catch (Exception ex)
@@ -77,7 +77,7 @@ namespace VendingMachine
                 if (dt.Rows.Count > 0)
                 {
                     string filename = ExportToExcel(dt, "Sales");
-                    SendThroughMail(filename);
+                    SendThroughMail(filename, "Sales");
                 }
             }
             catch (Exception ex)
@@ -100,25 +100,24 @@ namespace VendingMachine
             }
         }
 
-        private async void SendThroughMail(string fileAttachment)
+        private async void SendThroughMail(string fileAttachment, string ReportName)
         {
             try
             {
                 MailMessage mail = new MailMessage();
-                mail.From = new MailAddress("varsjacob@gmail.com");
-                mail.To.Add("Sathishkumarr2168@gmail.com");
-                mail.Subject = "Test Mail - 1";
-                mail.Body = "mail with attachment";
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-                //System.Net.Mail.Attachment attachment = new System.Net.Mail.Attachment(AppDomain.CurrentDomain.BaseDirectory + "/Images/Bounce.png");
+                mail.From = new MailAddress(Properties.Settings.Default.FromMailAddress);
+                mail.To.Add(Properties.Settings.Default.ToMailAddress);
+                mail.Subject = string.Format("{0} Report - {1}", ReportName, DateTime.Now);
+                mail.Body = "<!DOCTYPE HTML> <html>\r\n <head>\r\n </head>\r\n <body>\r\n   <h1>Greetings From Gurushektra<h1> <h3>Please Find the Attached Report<h3>\r\n </body>\r\n</html>";
+                SmtpClient SmtpServer = new SmtpClient(Properties.Settings.Default.SMTPClientAddress);
                 System.Net.Mail.Attachment attachment = new System.Net.Mail.Attachment(fileAttachment);
                 mail.Attachments.Add(attachment);
                 SmtpServer.Port = 587;
                 SmtpServer.UseDefaultCredentials = false;
-                SmtpServer.Credentials = new NetworkCredential("varsjacob@gmail.com", "goqvzhsvdxesivyr");
+                SmtpServer.Credentials = new NetworkCredential(Properties.Settings.Default.FromMailAddress, Properties.Settings.Default.SMTPAppPassword);
                 SmtpServer.EnableSsl = true;
                 SmtpServer.Send(mail);
-                MessageBox.Show("mail Send");
+                MessageBox.Show("Mail Sent");
             }
             catch (Exception ex)
             {
@@ -140,7 +139,6 @@ namespace VendingMachine
             {
                 filename = System.IO.Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory + "/Reports/"+label+"/"+string.Format("{0}_Report.xlsx",label));
                 excel = new Microsoft.Office.Interop.Excel.Application();
-                //wb = excel.Workbooks.Add();
                 wb = excel.Workbooks.Open(filename, 0, false, 5, "", "",
                             false, XlPlatform.xlWindows, "", true, false,
                             0, true, false, false);
@@ -157,21 +155,6 @@ namespace VendingMachine
                     dt.Rows[Idx].ItemArray;
                 }
 
-                //excel.Visible = true;
-                //if(!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "/" + label))
-                //{
-                //    Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "/" + label);
-                //}
-                //filename = AppDomain.CurrentDomain.BaseDirectory + "/" + label + "/" + string.Format("{0}_{1}.xlsx", label, "Report");
-                //var filePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "/" + label + "/", string.Format("{0}.xls", "SampleReport"));
-                //DirectoryInfo myfile = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory + "/" + label) { Attributes = FileAttributes.Normal };
-                //wb.SaveAs(filename, Type.Missing, Type.Missing, Type.Missing,
-                //            Type.Missing,
-                //            Type.Missing,
-                //            Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing,
-                //            Type.Missing, Type.Missing, Type.Missing,
-                //            Type.Missing);
-                //wb.Close(false, Type.Missing, false);
                 wb.RefreshAll();
                 excel.Calculate();
                 wb.Save();
