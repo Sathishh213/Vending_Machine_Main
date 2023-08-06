@@ -18,6 +18,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using VendingMachine.Helpers;
 using Microsoft.Office.Interop.Excel;
+using System.Net.Mail;
+using System.Net.Http.Headers;
+using System.Net;
+using System.IO.Enumeration;
+using System.IO;
+using System.Diagnostics;
 
 namespace VendingMachine
 {
@@ -49,7 +55,8 @@ namespace VendingMachine
                 dt = acc.GetTable(cmd);
                 if (dt.Rows.Count > 0)
                 {
-                    ExportToExcel(dt);
+                    string filename =  ExportToExcel(dt,"Stock");
+                    SendThroughMail(filename, "Stock");
                 }
             }
             catch (Exception ex)
@@ -69,7 +76,8 @@ namespace VendingMachine
                 dt = acc.GetTable(cmd);
                 if (dt.Rows.Count > 0)
                 {
-                    ExportToExcel(dt);
+                    string filename = ExportToExcel(dt, "Sales");
+                    SendThroughMail(filename, "Sales");
                 }
             }
             catch (Exception ex)
@@ -92,7 +100,32 @@ namespace VendingMachine
             }
         }
 
-        private async void ExportToExcel(System.Data.DataTable dt)
+        private async void SendThroughMail(string fileAttachment, string ReportName)
+        {
+            try
+            {
+                MailMessage mail = new MailMessage();
+                mail.From = new MailAddress(Properties.Settings.Default.FromMailAddress);
+                mail.To.Add(Properties.Settings.Default.ToMailAddress);
+                mail.Subject = string.Format("{0} Report - {1}", ReportName, DateTime.Now);
+                mail.Body = "<!DOCTYPE HTML> <html>\r\n <head>\r\n </head>\r\n <body>\r\n   <h1>Greetings From Gurushektra<h1> <h3>Please Find the Attached Report<h3>\r\n </body>\r\n</html>";
+                SmtpClient SmtpServer = new SmtpClient(Properties.Settings.Default.SMTPClientAddress);
+                System.Net.Mail.Attachment attachment = new System.Net.Mail.Attachment(fileAttachment);
+                mail.Attachments.Add(attachment);
+                SmtpServer.Port = 587;
+                SmtpServer.UseDefaultCredentials = false;
+                SmtpServer.Credentials = new NetworkCredential(Properties.Settings.Default.FromMailAddress, Properties.Settings.Default.SMTPAppPassword);
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(mail);
+                MessageBox.Show("Mail Sent");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+        private string ExportToExcel(System.Data.DataTable dt,string label)
         {
             Microsoft.Office.Interop.Excel.Application excel = null;
             Microsoft.Office.Interop.Excel.Workbook wb = null;
@@ -100,11 +133,15 @@ namespace VendingMachine
             object missing = Type.Missing;
             Microsoft.Office.Interop.Excel.Worksheet ws = null;
             Microsoft.Office.Interop.Excel.Range rng = null;
+            string filename = String.Empty;
 
             try
             {
+                filename = System.IO.Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory + "/Reports/"+label+"/"+string.Format("{0}_Report.xlsx",label));
                 excel = new Microsoft.Office.Interop.Excel.Application();
-                wb = excel.Workbooks.Add();
+                wb = excel.Workbooks.Open(filename, 0, false, 5, "", "",
+                            false, XlPlatform.xlWindows, "", true, false,
+                            0, true, false, false);
                 ws = (Microsoft.Office.Interop.Excel.Worksheet)wb.ActiveSheet;
 
                 for (int Idx = 0; Idx < dt.Columns.Count; Idx++)
@@ -118,8 +155,11 @@ namespace VendingMachine
                     dt.Rows[Idx].ItemArray;
                 }
 
-                excel.Visible = true;
-                wb.Activate();
+                wb.RefreshAll();
+                excel.Calculate();
+                wb.Save();
+                wb.Close(true);
+                excel.Quit();
             }
             catch (COMException ex)
             {
@@ -129,6 +169,7 @@ namespace VendingMachine
             {
                 MessageBox.Show("Error: " + ex.ToString());
             }
+            return filename;
         }
     }
 }
