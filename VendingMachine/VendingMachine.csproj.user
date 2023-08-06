@@ -19,6 +19,9 @@
     <Compile Update="frmOrderNow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="frmReport.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="frmUPIPayTM.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -40,6 +43,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="frmRefill.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="frmReport.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="frmUPIPayTM.xaml">
