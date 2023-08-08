@@ -32,12 +32,55 @@ namespace VendingMachine
         modbus mb = new modbus();
         public List<order_item> ordered = new List<order_item>();
 
+
+        private List<string> imagePaths; // List to store the image file paths
+        private int currentIndex = 0; // Index of the currently displayed image
+        private DispatcherTimer timer; // Timer for automatic slideshow
         public frmOrderConfirmation()
         {
             InitializeComponent();
-         
+            imagePaths = new List<string>
+            {
+                "HomeImage/ads1.jpg",
+                "HomeImage/ads2.jpg",
+                "HomeImage/ads3.jpg",
+                "HomeImage/ads4.jpg",
+                "HomeImage/ads5.jpg",
+                "HomeImage/ads6.jpg",
+
+                // Replace with the actual names of your image files
+                
+                // Add more image paths as needed
+                };
+                // Replace with the actual names of your image files
+
+            // Add more image paths as needed
+
+                timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromSeconds(3); // Set the time interval between slides (5 seconds in this example)
+                timer.Tick += Timer_Tick;
+                timer.Start();
+
+                // Display the first image
+                ShowImage(currentIndex);
+
         }
-       
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            // Move to the next image in the list
+            currentIndex++;
+            if (currentIndex >= imagePaths.Count)
+                currentIndex = 0;
+
+            // Display the next image
+            ShowImage(currentIndex);
+        }
+        private void ShowImage(int index)
+        {
+            // Load the image from the file path and set it as the source for the Image control
+            BitmapImage image = new BitmapImage(new Uri(imagePaths[index], UriKind.Relative));
+            imageControl.Source = image;
+        }
 
         private void btnPayment_Click(object sender, RoutedEventArgs e)
         {

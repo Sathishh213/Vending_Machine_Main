@@ -247,7 +247,7 @@ namespace VendingMachine
                 TextBlock lblStatus = null;
                 string msg = "";
                 int wait_count = 0;
-                await Task.Delay(1000);
+                await Task.Delay(000);
                 if (machine_ready()) // machine_ready()
                 {
                     //LEDOff();

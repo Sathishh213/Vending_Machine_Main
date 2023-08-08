@@ -13,7 +13,7 @@
        Topmost="True"  
         Loaded="Window_Loaded" Closing="Window_Closing" PreviewKeyDown="Window_PreviewKeyDown" >
     <Window.Background>
-        <ImageBrush ImageSource="images/last.jpg"/>
+        <ImageBrush ImageSource="images/thankYou.jpg"/>
     </Window.Background>
     <md:DialogHost Identifier="frmDialog">
         <md:DialogHost.DialogContent>
@@ -26,12 +26,17 @@
             <Grid >
 
                 <Image  Source="Images/Logo.png" Height="100" VerticalAlignment="Top"  Margin="0,10,20,0"  HorizontalAlignment="Right" />
-                <Button  Name="btnBack" Margin="50,40" Click="btnBack_Click" HorizontalAlignment="Right" VerticalAlignment="Bottom" Padding="0"   Width="100" Height="100" Style="{StaticResource MaterialDesignFloatingActionButton}" >
-                    <md:PackIcon Kind="ChevronRight" Width="100" Height="100" />
+
+
+                <Button  BorderBrush="Transparent" Margin="0,0,50,40" Name="btnBack"    Click="btnBack_Click"    Height="100" Width="292"  VerticalAlignment="Bottom"  HorizontalAlignment="Right">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Images/homeButton.png"  />
+                    </Button.Background>
+                    <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Width="260" RenderTransformOrigin="0.636,0.648"/>
                 </Button>
 
             </Grid>
-            
+
         </Grid>
     </md:DialogHost>
 </Window>

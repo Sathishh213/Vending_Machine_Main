@@ -8,16 +8,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="AdImages\11.jpg" />
-		<None Remove="AdImages\12.jpg" />
-		<None Remove="AdImages\13.jpg" />
-		<None Remove="AdImages\14.jpg" />
-		<None Remove="AdImages\15.jpg" />
-		<None Remove="AdImages\16.jpg" />
-		<None Remove="AdImages\17.jpg" />
-		<None Remove="AdImages\18.jpg" />
-		<None Remove="AdImages\19.jpg" />
-		<None Remove="AdImages\20.jpg" />
 		<None Remove="Images\11.jpg" />
 		<None Remove="Images\12.jpg" />
 		<None Remove="Images\13.jpg" />
@@ -28,15 +18,19 @@
 		<None Remove="Images\18.jpg" />
 		<None Remove="Images\19.jpg" />
 		<None Remove="Images\20.jpg" />
+		<None Remove="Images\adminbtn.png" />
 		<None Remove="Images\arokyalogo.jpg" />
+		<None Remove="Images\backButton.png" />
 		<None Remove="Images\background.jpg" />
 		<None Remove="Images\background1.jpg" />
 		<None Remove="Images\button.png" />
 		<None Remove="Images\cardreader.png" />
 		<None Remove="Images\face-scanning.gif" />
+		<None Remove="Images\homeButton.png" />
 		<None Remove="Images\last.jpg" />
 		<None Remove="Images\Logo.png" />
 		<None Remove="Images\Oreo.jpg" />
+		<None Remove="Images\paymentButton.png" />
 		<None Remove="Images\placeholder-man.png" />
 		<None Remove="Images\Product\250x330.png" />
 		<None Remove="Images\Product\Bounce.png" />
@@ -44,10 +38,13 @@
 		<None Remove="Images\Product\laysgreen.png" />
 		<None Remove="Images\Product\laysRed.png" />
 		<None Remove="Images\Product\littleheart.png" />
-		<None Remove="Images\thankyou.png" />
+		<None Remove="Images\thankYou.jpg" />
 		<None Remove="Images\upi.jpg" />
+		<None Remove="Images\vendingBg.jpg" />
 		<None Remove="Reports\Sales\Sales_Report.xlsx" />
 		<None Remove="Reports\Stock\Stock_Report.xlsx" />
+		<None Remove="UpiPageAds\jewellery.mp4" />
+		<None Remove="UpiPageAds\saveSoil.jpg" />
 
 		<None Remove="Videos\Home\COSTA RICA IN 4K 60fps HDR %28ULTRA HD%29.mp4" />
 
@@ -55,40 +52,55 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="AdImages\11.jpg">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		<Content Include="HomeImage\ads1.jpg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Include="AdImages\12.jpg">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		<Content Include="HomeImage\ads2.jpg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Include="AdImages\13.jpg">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		<Content Include="HomeImage\ads3.jpg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Include="AdImages\14.jpg">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		<Content Include="HomeImage\ads4.jpg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Include="AdImages\15.jpg">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		<Content Include="HomeImage\ads5.jpg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Include="AdImages\16.jpg">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		<Content Include="HomeImage\ads6.jpg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Include="AdImages\17.jpg">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		<Content Include="Images\adminbtn.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Include="AdImages\18.jpg">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		<Content Include="Images\backButton.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Include="AdImages\19.jpg">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		<Content Include="Images\button.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Include="AdImages\20.jpg">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		<Content Include="Images\homeButton.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Images\paymentButton.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Images\thankYou.jpg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Images\vendingBg.jpg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Reports\Sales\Sales_Report.xlsx">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Reports\Stock\Stock_Report.xlsx">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="UpiPageAds\jewellery.mp4">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="UpiPageAds\saveSoil.jpg">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
@@ -113,7 +125,6 @@
 		<Resource Include="Images\arokyalogo.jpg" />
 		<Resource Include="Images\background.jpg" />
 		<Resource Include="Images\background1.jpg" />
-		<Resource Include="Images\button.png" />
 		<Resource Include="Images\cardreader.png" />
 		<Resource Include="Images\face-scanning.gif">
 			<CopyToOutputDirectory></CopyToOutputDirectory>
@@ -147,7 +158,6 @@
 		<Content Include="Videos\Home\Oreo- Bubbles Of Play.mp4">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Resource Include="Images\thankyou.png" />
 		<Resource Include="Images\upi.jpg" />
 	</ItemGroup>
 

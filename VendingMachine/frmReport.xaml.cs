@@ -171,5 +171,12 @@ namespace VendingMachine
             }
             return filename;
         }
+
+        private void adminBtn_Click(object sender, RoutedEventArgs e)
+        {
+            frmAdminControl frm=new frmAdminControl();
+            this.Close();
+            frm.Show();
+        }
     }
 }

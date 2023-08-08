@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="frmHomeScreen" 
         Height="1080" Width="1920"  WindowState="Maximized" ResizeMode="NoResize" 
-        Foreground="White" FontSize="30" FontWeight="Bold" Topmost="True" Loaded="Window_Loaded" PreviewKeyDown="Window_PreviewKeyDown">
+        Foreground="White" Background="Black" FontSize="30" FontWeight="Bold" Topmost="True" Loaded="Window_Loaded" PreviewKeyDown="Window_PreviewKeyDown">
     <Window.Resources>
 
         <Style x:Key ="roundButtonTemplate" TargetType ="{x:Type Button}">
@@ -32,14 +32,14 @@
         </Style>
         <Storyboard x:Key="btnAnimate"   RepeatBehavior="Forever" >
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="btnFoodProduct">
-                <EasingDoubleKeyFrame KeyTime="0:0:0" Value="230"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="210"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="230"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0" Value="420"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="400"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="420"/>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="btnFoodProduct">
-                <EasingDoubleKeyFrame KeyTime="0:0:0" Value="230"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="210"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="230"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0" Value="165"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="145"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="165"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
@@ -48,7 +48,6 @@
             <BeginStoryboard Storyboard="{StaticResource btnAnimate}" />
         </EventTrigger>
     </Window.Triggers>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -56,7 +55,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="500"/>
+                <ColumnDefinition Width="700"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
         </Grid>
@@ -68,13 +67,13 @@
 
         <Grid Grid.Row="0" Grid.Column="1">
             <MediaElement x:Name="meVideo"  Volume="1" Stretch="Fill"  MediaEnded="meVideo_MediaEnded" MediaFailed="meVideo_MediaFailed" Margin="590,0,0,0"/>
-            <Button   Name="btnFoodProduct"  Tag="1"  Click="btnBuyNow_Click" Style="{StaticResource roundButtonTemplate}"    Height="94" Width="122" BorderThickness="0" VerticalAlignment="Bottom"  HorizontalAlignment="Right"  Panel.ZIndex="10" RenderTransformOrigin="0.518,4.577" Margin="0,0,70,10" >
+            <Button  BorderBrush="Transparent" Name="btnFoodProduct"    Click="btnBuyNow_Click"    Height="100" Width="300"  VerticalAlignment="Bottom"  HorizontalAlignment="Right"    Margin="0,0,70,10" >
                 <Button.Background>
-                    <ImageBrush ImageSource="Images/button.png"/>
+                    <ImageBrush ImageSource="Images/button.png" />
                 </Button.Background>
-                <StackPanel>
-                    <TextBlock Text="ORDER"      HorizontalAlignment="Center" FontSize="19" />
-                    <TextBlock Text="HERE"   HorizontalAlignment="Center" FontSize="19"/>
+                <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Width="260" RenderTransformOrigin="0.636,0.648">
+                    <TextBlock Margin="90,30,10,10" Text="ORDER HERE"   Foreground="Black" FontWeight="Bold" HorizontalAlignment="Center" FontSize="24" RenderTransformOrigin="1.258,1.772" Width="150" />
+
                 </StackPanel>
             </Button>
         </Grid>
@@ -113,7 +112,7 @@
 
 
         <DockPanel Grid.Row="2">
-            <TextBlock Name="txtHelpLine" Height="50" Text="Help Line : " Background="#7F000000" FontSize="30" VerticalAlignment="Bottom"  TextAlignment="Center"  />
+            <TextBlock Name="txtHelpLine"  Height="50" Text="Help Line : " Background="#7F000000" FontSize="30" VerticalAlignment="Bottom"  TextAlignment="Center"  />
         </DockPanel>
 
 

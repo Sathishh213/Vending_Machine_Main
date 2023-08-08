@@ -11,7 +11,7 @@
         Topmost="True"   
         Loaded="Window_Loaded" Closing="Window_Closing" PreviewKeyDown="Window_PreviewKeyDown">
     <Window.Background>
-        <ImageBrush ImageSource="Images/Oreo.jpg"/>
+        <ImageBrush ImageSource="Images/vendingBg.jpg"/>
     </Window.Background>
     <md:DialogHost Identifier="myIdCardDialog" Loaded="DialogHost_Loaded">
         <md:DialogHost.DialogContent>
@@ -162,8 +162,11 @@
                             <Button Content="N" Tag="N"  Width="80" Height="70"  FontSize="25"   Background="Gray" BorderBrush="Gray" Foreground="White" Margin="20, 5" Click="btnNumber_Click"/>
                             <Button Content="M" Tag="M"  Width="80" Height="70"  FontSize="25"   Background="Gray" BorderBrush="Gray" Foreground="White" Margin="20, 5" Click="btnNumber_Click"/>
                             <Button Content="." Tag="."  Width="150" Height="70"  FontSize="25"   Background="Gray" BorderBrush="Gray" Foreground="White" Margin="20, 5" Click="btnNumber_Click"/>
-                            <Button  Name="btnBack" Margin="20,5" Click="btnBack_Click" VerticalAlignment="Bottom" HorizontalAlignment="Left" Padding="0"   Width="80" Height="70" Style="{StaticResource MaterialDesignFloatingActionButton}" >
-                                <md:PackIcon Kind="ChevronLeft" Width="35" Height="35" />
+                            <Button  BorderBrush="Transparent" Margin="20,5" Name="btnBack"    Click="btnBack_Click"    Height="90" Width="130"  VerticalAlignment="Bottom"  HorizontalAlignment="Left">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="Images/backButton.png"  />
+                                </Button.Background>
+                                <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Width="260" RenderTransformOrigin="0.636,0.648"/>
                             </Button>
                         </WrapPanel>
 

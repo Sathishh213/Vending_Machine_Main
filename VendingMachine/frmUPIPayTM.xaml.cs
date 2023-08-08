@@ -223,7 +223,7 @@ namespace VendingMachine
             try
             {
                 timer_count++;
-                int time_remains = 180 - timer_count;
+                int time_remains = 120 - timer_count;
                 pbTimeRemaining.Value = time_remains;
                 lblTimeRemains.Text = time_remains.ToString();
 
@@ -235,7 +235,7 @@ namespace VendingMachine
                     }
                 }
 
-                if (timer_count > 179)
+                if (timer_count > 119)
                 {
                     tmr_status.Stop();
                     Goback();
@@ -397,6 +397,15 @@ namespace VendingMachine
             }
         }
 
-      
+        private void VidPlayer_Loaded(object sender, RoutedEventArgs e)
+        {
+            VidPlayer.Play();
+        }
+
+        private void VidPlayer_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            
+            VidPlayer.Position = TimeSpan.FromSeconds(0);
+        }
     }
 }
