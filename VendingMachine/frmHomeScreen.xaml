@@ -60,7 +60,7 @@
             </Grid.ColumnDefinitions>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="0" >
-            <Image x:Name="imageControl" Stretch="Fill" Margin="20,0,867,0" />
+            <Image x:Name="imageControl"  Stretch="Fill" Margin="20,0,867,0" />
             <Image  Source="Images/Logo.png" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20,10,20,0"  />
         </Grid>
 

@@ -32,6 +32,8 @@ namespace VendingMachine
         public frmUPIPayTM()
         {
             InitializeComponent();
+
+           
         }
 
         BackgroundWorker bw = new BackgroundWorker();
@@ -91,6 +93,7 @@ namespace VendingMachine
                 log.Error(ex);
             }
         }
+
 
         private void Bw_DoWork(object sender, DoWorkEventArgs e)
         {

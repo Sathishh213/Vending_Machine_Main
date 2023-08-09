@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VendingMachine"
         mc:Ignorable="d"
-        Title="frmUPIPayTM" Height="768" Width="1366"  WindowState="Maximized" ResizeMode="NoResize" PreviewKeyDown="Window_PreviewKeyDown"
+        Title="frmUPIPayTM" Height="768" Width="1366"  WindowState="Maximized"  PreviewKeyDown="Window_PreviewKeyDown"
         Foreground="White" FontSize="25" FontWeight="Bold"  
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" 
         Topmost="True"  
@@ -57,7 +57,7 @@
             </StackPanel>
             <StackPanel Grid.Column="2">
                 <Image Grid.Row="0" Margin="10,40,0,0" Source="UpiPageAds/saveSoil.jpg" Height="260" Width="750" Stretch="Fill" VerticalAlignment="Top" HorizontalAlignment="Left"   />
-                <MediaElement Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0" x:Name="VidPlayer" Height="500" Width="750" Stretch="Fill"  Source="UpiPageAds/jewellery.mp4"   LoadedBehavior="Manual" Loaded="VidPlayer_Loaded" MediaEnded="VidPlayer_MediaEnded"   Canvas.Top="40"/>
+                <MediaElement Grid.Row="1" VerticalAlignment="Top" Source="UpiPageAds/jewellery.mp4" HorizontalAlignment="Left" Margin="10,10,0,0" x:Name="VidPlayer" Height="500" Width="750" Stretch="Fill"     LoadedBehavior="Manual" Loaded="VidPlayer_Loaded" MediaEnded="VidPlayer_MediaEnded"   Canvas.Top="40"/>
             </StackPanel>
         </Grid>
     </md:DialogHost>

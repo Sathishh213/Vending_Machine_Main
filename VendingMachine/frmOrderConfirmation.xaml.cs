@@ -4,6 +4,7 @@ using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,43 +34,44 @@ namespace VendingMachine
         public List<order_item> ordered = new List<order_item>();
 
 
-        private List<string> imagePaths; // List to store the image file paths
+       
+        //Ad Image
+        List<string> imageList = new List<string>(); // List to store the image file paths
         private int currentIndex = 0; // Index of the currently displayed image
         private DispatcherTimer timer; // Timer for automatic slideshow
         public frmOrderConfirmation()
         {
             InitializeComponent();
-            imagePaths = new List<string>
-            {
-                "HomeImage/ads1.jpg",
-                "HomeImage/ads2.jpg",
-                "HomeImage/ads3.jpg",
-                "HomeImage/ads4.jpg",
-                "HomeImage/ads5.jpg",
-                "HomeImage/ads6.jpg",
 
-                // Replace with the actual names of your image files
+            adImage();
                 
-                // Add more image paths as needed
-                };
-                // Replace with the actual names of your image files
 
-            // Add more image paths as needed
+        }
+        private void adImage()
+        {
+            string imgpath = AppDomain.CurrentDomain.BaseDirectory + "HomeImage";
+            DirectoryInfo directoryInfo = new DirectoryInfo(imgpath);
+            var images = directoryInfo.GetFiles();
+            foreach (var image in images)
+            {
+                if (image.Extension.Equals(".jpg"))
+                {
+                    imageList.Add(string.Format(@"{0}/{1}", "HomeImage", image.Name));
+                }
+            }
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(3); // Set the time interval between slides (3 seconds in this example)
+            timer.Tick += Timer_Tick;
+            timer.Start();
 
-                timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromSeconds(3); // Set the time interval between slides (5 seconds in this example)
-                timer.Tick += Timer_Tick;
-                timer.Start();
-
-                // Display the first image
-                ShowImage(currentIndex);
-
+            // Display the first image
+            ShowImage(currentIndex);
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
             // Move to the next image in the list
             currentIndex++;
-            if (currentIndex >= imagePaths.Count)
+            if (currentIndex >= imageList.Count)
                 currentIndex = 0;
 
             // Display the next image
@@ -78,10 +80,11 @@ namespace VendingMachine
         private void ShowImage(int index)
         {
             // Load the image from the file path and set it as the source for the Image control
-            BitmapImage image = new BitmapImage(new Uri(imagePaths[index], UriKind.Relative));
+            BitmapImage image = new BitmapImage(new Uri(imageList[index], UriKind.Relative));
             imageControl.Source = image;
         }
 
+       
         private void btnPayment_Click(object sender, RoutedEventArgs e)
         {
             if (machine_ready())
