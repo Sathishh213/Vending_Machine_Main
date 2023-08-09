@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VendingMachine"
         mc:Ignorable="d"
-        Title="frmUPIPayTM" Height="768" Width="1366"  WindowState="Maximized" ResizeMode="NoResize" PreviewKeyDown="Window_PreviewKeyDown"
+        Title="frmUPIPayTM" Height="768" Width="1366"  WindowState="Maximized"  PreviewKeyDown="Window_PreviewKeyDown"
         Foreground="White" FontSize="25" FontWeight="Bold"  
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" 
         Topmost="True"  
         Loaded="Window_Loaded" Closing="Window_Closing">
     <Window.Background>
-        <ImageBrush ImageSource="Images/Oreo.jpg"/>
+        <ImageBrush ImageSource="Images/vendingBg.jpg"/>
     </Window.Background>
     <md:DialogHost Identifier="frmDialog" >
         <!--  <md:DialogHost.DialogContent>
@@ -27,7 +27,7 @@
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
                 <DockPanel  >
-                    <TextBlock x:Name="lblMessage" Text="" Height="100" Margin="0,50,0,0" FontSize="37" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="lblMessage" Background="Yellow" TextAlignment="Center" Foreground="Black" Text="" Width="400" Height="60" Margin="0,50,0,0" FontSize="37" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </DockPanel>
                 <TextBlock x:Name="lblUserMessage" FontSize="27" TextAlignment="Center" >Please wait</TextBlock>
                 <Image Source="Images\upi.jpg" Stretch="Uniform" Height="100" Margin="5,0" />
@@ -36,12 +36,12 @@
                 <Image x:Name="img_QR" Width="200" Height="200" Margin="0,10,0,30" />
                 <Grid x:Name="dgTimer" Width="180" Height="180" Margin="0,0,0,0">
                     <Grid>
-                        <ProgressBar Name="pbTimeRemaining"  Value="179" Maximum="150" Minimum="0" Width="180" Height="180"   Style="{StaticResource MaterialDesignCircularProgressBar}"    />
+                        <ProgressBar Name="pbTimeRemaining"   Value="179" Maximum="150" Minimum="0" Width="180" Height="180"   Style="{StaticResource MaterialDesignCircularProgressBar}"    />
                         <TextBlock Name="lblTimeRemains" Text="179" TextAlignment="Center" VerticalAlignment="Center" ></TextBlock>
                     </Grid>
                 </Grid>
                 <DockPanel >
-                    <TextBlock Text="gurukshetra.co.in" Margin="0,30" FontSize="20" HorizontalAlignment="Center"  VerticalAlignment="Top" Foreground="White" FontWeight="Bold" />
+                    <TextBlock Background="Yellow" Width="450" Height="35" Foreground="Black" Text="gurukshetra.co.in" Margin="0,30" FontSize="20" TextAlignment="Center" HorizontalAlignment="Center"  VerticalAlignment="Top"  FontWeight="Bold" />
                 </DockPanel>
             </StackPanel>
 
@@ -55,11 +55,9 @@
                     </DockPanel>
                 </Grid>
             </StackPanel>
-            <StackPanel Grid.Column="2" Height="760">
-                <Grid Height="760" >
-                    <MediaElement Name="VidPlayer" Stretch="Fill"   Margin="0,17,10,22" />
-                    <Image  Source="Images/Logo.png" Height="100" VerticalAlignment="Top"  Margin="0,10,20,0"  HorizontalAlignment="Right" />
-                </Grid>
+            <StackPanel Grid.Column="2">
+                <Image Grid.Row="0" Margin="10,40,0,0" Source="UpiPageAds/saveSoil.jpg" Height="260" Width="750" Stretch="Fill" VerticalAlignment="Top" HorizontalAlignment="Left"   />
+                <MediaElement Grid.Row="1" VerticalAlignment="Top" Source="UpiPageAds/jewellery.mp4" HorizontalAlignment="Left" Margin="10,10,0,0" x:Name="VidPlayer" Height="500" Width="750" Stretch="Fill"     LoadedBehavior="Manual" Loaded="VidPlayer_Loaded" MediaEnded="VidPlayer_MediaEnded"   Canvas.Top="40"/>
             </StackPanel>
         </Grid>
     </md:DialogHost>

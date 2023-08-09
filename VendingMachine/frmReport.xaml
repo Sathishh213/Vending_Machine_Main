@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VendingMachine"
         mc:Ignorable="d"
-        Title="frmReport" Height="350" Width="525" 
+        Title="frmReport" Height="1080" Width="1920" WindowState="Maximized" WindowStyle="None"
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" 
         FontSize="25" Foreground="White" 
         Topmost="True">
         <Window.Background>
-            <ImageBrush ImageSource="Images/Oreo.jpg"/>
+            <ImageBrush ImageSource="Images/vendingBg.jpg"/>
         </Window.Background>
         <Grid Background="#C8000000">
 
@@ -27,5 +27,13 @@
                 <Button  Name="btnSales" Content="Sales Report" Margin="10,0,0,10"  Click="btnSales_Click" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"  Width="180" Height="50" Style="{StaticResource MaterialDesignRaisedButton}" />
             </StackPanel>
 
-        </Grid>
+        <Button  Grid.Row="2" BorderBrush="Transparent" Margin="20,10,15,25" Name="adminBtn"    Click="adminBtn_Click"    Height="150" Width="270"  VerticalAlignment="Bottom"  HorizontalAlignment="Left">
+            <Button.Background>
+                <ImageBrush ImageSource="Images/adminbtn.png" />
+            </Button.Background>
+            <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Width="260" RenderTransformOrigin="0.636,0.648"/>
+        </Button>
+
+
+    </Grid>
 </Window>

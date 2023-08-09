@@ -11,7 +11,7 @@
         Topmost="True"   
         Loaded="Window_Loaded" Closing="Window_Closing" PreviewKeyDown="Window_PreviewKeyDown">
     <Window.Background>
-        <ImageBrush ImageSource="Images/Oreo.jpg"/>
+        <ImageBrush ImageSource="Images/vendingBg.jpg"/>
     </Window.Background>
     <md:DialogHost Identifier="myVendingDialog" Loaded="DialogHost_Loaded">
         <md:DialogHost.DialogContent>

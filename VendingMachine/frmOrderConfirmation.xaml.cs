@@ -4,6 +4,7 @@ using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,13 +33,58 @@ namespace VendingMachine
         modbus mb = new modbus();
         public List<order_item> ordered = new List<order_item>();
 
+
+       
+        //Ad Image
+        List<string> imageList = new List<string>(); // List to store the image file paths
+        private int currentIndex = 0; // Index of the currently displayed image
+        private DispatcherTimer timer; // Timer for automatic slideshow
         public frmOrderConfirmation()
         {
             InitializeComponent();
-         
-        }
-       
 
+            adImage();
+                
+
+        }
+        private void adImage()
+        {
+            string imgpath = AppDomain.CurrentDomain.BaseDirectory + "HomeImage";
+            DirectoryInfo directoryInfo = new DirectoryInfo(imgpath);
+            var images = directoryInfo.GetFiles();
+            foreach (var image in images)
+            {
+                if (image.Extension.Equals(".jpg"))
+                {
+                    imageList.Add(string.Format(@"{0}/{1}", "HomeImage", image.Name));
+                }
+            }
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(3); // Set the time interval between slides (3 seconds in this example)
+            timer.Tick += Timer_Tick;
+            timer.Start();
+
+            // Display the first image
+            ShowImage(currentIndex);
+        }
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            // Move to the next image in the list
+            currentIndex++;
+            if (currentIndex >= imageList.Count)
+                currentIndex = 0;
+
+            // Display the next image
+            ShowImage(currentIndex);
+        }
+        private void ShowImage(int index)
+        {
+            // Load the image from the file path and set it as the source for the Image control
+            BitmapImage image = new BitmapImage(new Uri(imageList[index], UriKind.Relative));
+            imageControl.Source = image;
+        }
+
+       
         private void btnPayment_Click(object sender, RoutedEventArgs e)
         {
             if (machine_ready())
