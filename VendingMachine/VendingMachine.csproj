@@ -41,7 +41,10 @@
 		<None Remove="Images\thankYou.jpg" />
 		<None Remove="Images\upi.jpg" />
 		<None Remove="Images\vendingBg.jpg" />
+		<None Remove="Reports\MailContent.html" />
+		<None Remove="Reports\Sales Report\Sales Report.txt" />
 		<None Remove="Reports\Sales Report\Sales Report.xlsx" />
+		<None Remove="Reports\Stock Report\Stock Report.txt" />
 		<None Remove="Reports\Stock Report\Stock Report.xlsx" />
 		<None Remove="UpiPageAds\jewellery.mp4" />
 		<None Remove="UpiPageAds\saveSoil.jpg" />
@@ -91,7 +94,16 @@
 		<Content Include="Images\vendingBg.jpg">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
+		<Content Include="Reports\MailContent.html">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Reports\Sales Report\Sales Report.txt">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
 		<Content Include="Reports\Sales Report\Sales Report.xlsx">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Reports\Stock Report\Stock Report.txt">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Include="Reports\Stock Report\Stock Report.xlsx">

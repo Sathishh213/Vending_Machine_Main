@@ -24,6 +24,7 @@ using System.Net;
 using System.IO.Enumeration;
 using System.IO;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace VendingMachine
 {
@@ -58,46 +59,37 @@ namespace VendingMachine
         private void btnSendReport_Click(object sender, RoutedEventArgs e)
         {
             string reportName = string.Empty;
-            if (radioBtn_Sales.IsChecked.HasValue ? radioBtn_Sales.IsChecked.Value : false)
-            {
-                reportName = radioBtn_Sales.Content.ToString();
-            }
-            else if (radioBtn_Stock.IsChecked.HasValue ? radioBtn_Stock.IsChecked.Value : false)
-            {
-                reportName = radioBtn_Stock.Content.ToString();
-            }
-            if (txtEmailId.Text != null)
+            if (IsvalidEmailFormat())
             {
                 ToAddress = txtEmailId.Text;
+                if (radioBtn_Sales.IsChecked.HasValue ? radioBtn_Sales.IsChecked.Value : false)
+                {
+                    reportName = radioBtn_Sales.Content.ToString();
+                }
+                else if (radioBtn_Stock.IsChecked.HasValue ? radioBtn_Stock.IsChecked.Value : false)
+                {
+                    reportName = radioBtn_Stock.Content.ToString();
+                }
+                try
+                {
+                    string filePath = System.IO.Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory + "/Reports/" + reportName + "/" + string.Format("{0}.txt", reportName));
+                    cmd = File.ReadAllText(filePath);
+                    dt = acc.GetTable(cmd);
+                    if (dt.Rows.Count > 0 && !string.IsNullOrEmpty(reportName))
+                    {
+                        string filename = ExportToExcel(dt, reportName);
+                        SendThroughMail(filename, reportName);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    DisplayMsg(ex.Message);
+                    log.Error(ex);
+                }
             }
-            try
+            else
             {
-                if (reportName == "Stock Report")
-                {
-                    cmd = @"SELECT product_id as 'Product ID', product_name as 'Product Name', sum(stock) as 'Available In Stock',OutOfStock as 'Out Of Stock' from (
-	                    Select product_id, product_name ,price, 
-                        case when soldout > 0 then 0 else stock end as stock,
-                        case when soldout > 0 then 'Yes' else 'No' end as OutOfStock
-                        from mst_product p
-                        ) as M group by M.product_id;";
-                }
-                else if (reportName == "Sales Report")
-                {
-                    cmd = @"select order_id as 'Order ID',product_lineitems as 'Order Details',total_amount as 'Order Amount',
-                        total_quantity as 'Order Quantity',order_datetime as 'Order Date',payment_method as 'Payment Method', 
-                        transaction_id as 'Transaction ID',machine_id as 'Machine ID' from sales_order order by order_datetime";
-                }
-                dt = acc.GetTable(cmd);
-                if (dt.Rows.Count > 0 && !string.IsNullOrEmpty(reportName))
-                {
-                    string filename =  ExportToExcel(dt, reportName);
-                    SendThroughMail(filename, reportName);
-                }
-            }
-            catch (Exception ex)
-            {
-                DisplayMsg(ex.Message);
-                log.Error(ex);
+                DisplayMsg("Please Enter Valid Email ID!!");
             }
         }
 
@@ -118,21 +110,29 @@ namespace VendingMachine
         {
             try
             {
-                MailMessage mail = new MailMessage();
-                mail.From = new MailAddress(Properties.Settings.Default.FromMailAddress);
-                mail.To.Add(ToAddress);
-                mail.Subject = string.Format("{0} - {1}", ReportName, DateTime.Now);
-                mail.IsBodyHtml = true;
-                mail.Body = "<!DOCTYPE HTML> <html>\r\n <head>\r\n </head>\r\n <body>\r\n   <h1>Greetings From Gurushektra<h1> <h3>Please Find the Attached Report<h3>\r\n </body>\r\n</html>";
-                SmtpClient SmtpServer = new SmtpClient(Properties.Settings.Default.SMTPClientAddress);
-                System.Net.Mail.Attachment attachment = new System.Net.Mail.Attachment(fileAttachment);
-                mail.Attachments.Add(attachment);
-                SmtpServer.Port = 587;
-                SmtpServer.UseDefaultCredentials = false;
-                SmtpServer.Credentials = new NetworkCredential(Properties.Settings.Default.FromMailAddress, Properties.Settings.Default.SMTPAppPassword);
-                SmtpServer.EnableSsl = true;
-                SmtpServer.Send(mail);
-                DisplayMsg("Mail Sent Successfully");
+                string filePath = System.IO.Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory + "/Reports/MailContent.html");
+                if (!string.IsNullOrEmpty(filePath))
+                {
+                    MailMessage mail = new MailMessage();
+                    mail.From = new MailAddress(Properties.Settings.Default.FromMailAddress);
+                    mail.To.Add(ToAddress);
+                    mail.Subject = string.Format("{0} - {1}", ReportName, DateTime.Now);
+                    mail.IsBodyHtml = true;
+                    mail.Body = File.ReadAllText(filePath);
+                    SmtpClient SmtpServer = new SmtpClient(Properties.Settings.Default.SMTPClientAddress);
+                    System.Net.Mail.Attachment attachment = new System.Net.Mail.Attachment(fileAttachment);
+                    mail.Attachments.Add(attachment);
+                    SmtpServer.Port = 587;
+                    SmtpServer.UseDefaultCredentials = false;
+                    SmtpServer.Credentials = new NetworkCredential(Properties.Settings.Default.FromMailAddress, Properties.Settings.Default.SMTPAppPassword);
+                    SmtpServer.EnableSsl = true;
+                    SmtpServer.Send(mail);
+                    DisplayMsg("Mail Sent Successfully");
+                }
+                else
+                {
+                    DisplayMsg("Mail Content Not Found");
+                }
             }
             catch (Exception ex)
             {
@@ -197,6 +197,23 @@ namespace VendingMachine
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
             txtEmailId.Text = string.Empty;
+        }
+
+        private bool IsvalidEmailFormat()
+        {
+            bool result = false;
+            if (txtEmailId.Text != null)
+            {
+                string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
+                    @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+                    @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+                Regex re = new Regex(strRegex);
+                if (re.IsMatch(txtEmailId.Text))
+                    result = true;
+                else
+                    result = false;
+            }
+            return result;
         }
     }
 }
