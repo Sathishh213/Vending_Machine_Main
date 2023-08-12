@@ -8,10 +8,17 @@
         Title="frmReport" Height="1080" Width="1920" WindowState="Maximized" WindowStyle="None"
         xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" 
         FontSize="25" Foreground="White" 
-        Topmost="True">
-        <Window.Background>
-            <ImageBrush ImageSource="Images/vendingBg.jpg"/>
-        </Window.Background>
+        Topmost="True" Loaded="Window_Loaded">
+    <Window.Background>
+        <ImageBrush ImageSource="Images/vendingBg.jpg"/>
+    </Window.Background>
+    <md:DialogHost Identifier="frmReportDialog">
+        <md:DialogHost.DialogContent>
+            <StackPanel>
+
+
+            </StackPanel>
+        </md:DialogHost.DialogContent>
         <Grid Background="#C8000000">
 
             <Grid.RowDefinitions>
@@ -19,12 +26,25 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <DockPanel Grid.Row="0">
-                <TextBlock Text="Generate and Download Reports" FontSize="25" FontWeight="Bold" TextAlignment="Center" Width="500" Height="50" VerticalAlignment="Top" OpacityMask="Black" Foreground="#FF08090C" />
+                <TextBlock Text="Generate and Download Reports" FontSize="25" FontWeight="Bold" TextAlignment="Center" Width="500" Height="50" VerticalAlignment="Top" OpacityMask="Black" Foreground="HotPink" />
             </DockPanel>
 
             <StackPanel Grid.Row="1" Orientation="Vertical"  Margin="10,50,0,0">
-                <Button  Name="btnStock" Content="Stock Report" Margin="10,10,0,10" Click="btnStock_Click" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"  Width="180" Height="50" Style="{StaticResource MaterialDesignRaisedButton}" />
-                <Button  Name="btnSales" Content="Sales Report" Margin="10,0,0,10"  Click="btnSales_Click" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"  Width="180" Height="50" Style="{StaticResource MaterialDesignRaisedButton}" />
+            <StackPanel Orientation="Horizontal">
+                <RadioButton x:Name="radioBtn_Stock" Margin="400,10,0,10" Width="250" GroupName="Reports" Background="Yellow" Foreground="White" >
+                    Stock Report
+                </RadioButton>
+                <RadioButton x:Name="radioBtn_Sales" Margin="10,10,0,10" Width="250" GroupName="Reports" Background="Yellow" Foreground="White" >
+                    Sales Report
+                </RadioButton>
+            </StackPanel>
+                <WrapPanel Margin="200,10">
+                    <TextBlock Text="Email Address"  Width="250" />
+                    <TextBlock Text=":"  Width="10" FontWeight="Bold" />
+                    <TextBox Name="txtEmailId" Width="350" MaxLength="30" BorderBrush="White" />
+                    <Button  Name="btnStock" Content="Send" Margin="10,10,0,10" Click="btnSendReport_Click" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"  Width="150" Height="50" Style="{StaticResource MaterialDesignRaisedButton}" />
+                    <Button  Name="btnClear" Content="Clear" Margin="10,10,0,10" Click="btnClear_Click" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"  Width="150" Height="50" Style="{StaticResource MaterialDesignRaisedButton}" />
+            </WrapPanel>
             </StackPanel>
 
         <Button  Grid.Row="2" BorderBrush="Transparent" Margin="20,10,15,25" Name="adminBtn"    Click="adminBtn_Click"    Height="150" Width="270"  VerticalAlignment="Bottom"  HorizontalAlignment="Left">
@@ -36,4 +56,5 @@
 
 
     </Grid>
+    </md:DialogHost>
 </Window>
