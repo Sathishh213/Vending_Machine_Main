@@ -192,16 +192,20 @@ namespace VendingMachine
                             if (dataTable2 != null && dataTable2.Rows.Count > 0)
                             {
                                 int A_cellrange = 3 + g_idx;
-                                int D_cellrange = 3 + g_idx + dataTable2.Rows.Count - 1;
+                                int D_cellrange = 3 + g_idx + dataTable2.Rows.Count;
+                                for (int c_idx = 0; c_idx < dataTable2.Columns.Count; c_idx++)
+                                {
+                                    ws.Range["A3"].Offset[g_idx, c_idx].Value = dataTable2.Columns[c_idx].ColumnName;
+                                }
                                 for (int idx = 0; idx < dataTable2.Rows.Count; idx++)
                                 {
                                     f_idx = g_idx + idx;
-                                    ws.Range["A3"].Offset[f_idx].Resize[1, 4].Value = dataTable2.Rows[idx].ItemArray;
+                                    ws.Range["A4"].Offset[f_idx].Resize[1, 4].Value = dataTable2.Rows[idx].ItemArray;
                                 }
                                 string _range = string.Format("A{0}:D{1}", A_cellrange, D_cellrange);
                                 Excel.Range range = ws.Range[_range] as Excel.Range;
                                 range.Rows.Group(misValue, misValue, misValue, misValue);
-                                f_idx++;
+                                f_idx += 2;
                             }
                         }
                     }
