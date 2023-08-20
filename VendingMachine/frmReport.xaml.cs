@@ -211,6 +211,7 @@ namespace VendingMachine
                     }
                     ws.Outline.SummaryRow = XlSummaryRow.xlSummaryAbove;
                     ws.Outline.ShowLevels(1, 0);
+                    ws.Columns.AutoFit();
                 }
                 
 
