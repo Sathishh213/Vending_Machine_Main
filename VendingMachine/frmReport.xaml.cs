@@ -25,6 +25,12 @@ using System.IO.Enumeration;
 using System.IO;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using Google.Protobuf.WellKnownTypes;
+using Excel = Microsoft.Office.Interop.Excel;
+using Newtonsoft.Json;
+using System.Reflection;
+using System.ComponentModel;
+using DataTable = System.Data.DataTable;
 
 namespace VendingMachine
 {
@@ -145,7 +151,7 @@ namespace VendingMachine
             Microsoft.Office.Interop.Excel.Application excel = null;
             Microsoft.Office.Interop.Excel.Workbook wb = null;
 
-            object missing = Type.Missing;
+            object misValue = System.Reflection.Missing.Value;
             Microsoft.Office.Interop.Excel.Worksheet ws = null;
             Microsoft.Office.Interop.Excel.Range rng = null;
             string filename = String.Empty;
@@ -164,11 +170,45 @@ namespace VendingMachine
                     ws.Range["A1"].Offset[0, Idx].Value = dt.Columns[Idx].ColumnName;
                 }
 
-                for (int Idx = 0; Idx < dt.Rows.Count; Idx++)
-                {  
-                    ws.Range["A2"].Offset[Idx].Resize[1, dt.Columns.Count].Value =
-                    dt.Rows[Idx].ItemArray;
+                if (label == "Stock Report")
+                {
+                    for (int Idx = 0; Idx < dt.Rows.Count; Idx++)
+                    {
+                        ws.Range["A2"].Offset[Idx].Resize[1, dt.Columns.Count].Value =
+                        dt.Rows[Idx].ItemArray;
+                    }
                 }
+                else if (label == "Sales Report")
+                {
+                    int f_idx = 0;
+                    for (int Idx = 0; Idx < dt.Rows.Count; Idx++)
+                    {
+                        int g_idx = f_idx + Idx;
+                        ws.Range["A2"].Offset[g_idx].Resize[1, dt.Columns.Count].Value =
+                        dt.Rows[Idx].ItemArray;
+                        if (dt.Rows[Idx]["Order Details"] != null)
+                        {
+                            DataTable dataTable2 = (DataTable)JsonConvert.DeserializeObject(dt.Rows[Idx]["Order Details"].ToString(), (typeof(DataTable)));
+                            if (dataTable2 != null && dataTable2.Rows.Count > 0)
+                            {
+                                int A_cellrange = 3 + g_idx;
+                                int D_cellrange = 3 + g_idx + dataTable2.Rows.Count - 1;
+                                for (int idx = 0; idx < dataTable2.Rows.Count; idx++)
+                                {
+                                    f_idx = g_idx + idx;
+                                    ws.Range["A3"].Offset[f_idx].Resize[1, 4].Value = dataTable2.Rows[idx].ItemArray;
+                                }
+                                string _range = string.Format("A{0}:D{1}", A_cellrange, D_cellrange);
+                                Excel.Range range = ws.Range[_range] as Excel.Range;
+                                range.Rows.Group(misValue, misValue, misValue, misValue);
+                                f_idx++;
+                            }
+                        }
+                    }
+                    ws.Outline.SummaryRow = XlSummaryRow.xlSummaryAbove;
+                    ws.Outline.ShowLevels(1, 0);
+                }
+                
 
                 wb.RefreshAll();
                 excel.Calculate();
