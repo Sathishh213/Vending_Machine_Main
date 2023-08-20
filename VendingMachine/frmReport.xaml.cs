@@ -31,6 +31,7 @@ using Newtonsoft.Json;
 using System.Reflection;
 using System.ComponentModel;
 using DataTable = System.Data.DataTable;
+using System.Globalization;
 
 namespace VendingMachine
 {
@@ -155,6 +156,7 @@ namespace VendingMachine
             Microsoft.Office.Interop.Excel.Worksheet ws = null;
             Microsoft.Office.Interop.Excel.Range rng = null;
             string filename = String.Empty;
+            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
 
             try
             {
@@ -168,6 +170,7 @@ namespace VendingMachine
                 for (int Idx = 0; Idx < dt.Columns.Count; Idx++)
                 {
                     ws.Range["A1"].Offset[0, Idx].Value = dt.Columns[Idx].ColumnName;
+                    ws.Range["A1"].Offset[0].EntireRow.Font.Bold = true;
                 }
 
                 if (label == "Stock Report")
@@ -184,8 +187,10 @@ namespace VendingMachine
                     for (int Idx = 0; Idx < dt.Rows.Count; Idx++)
                     {
                         int g_idx = f_idx + Idx;
-                        ws.Range["A2"].Offset[g_idx].Resize[1, dt.Columns.Count].Value =
-                        dt.Rows[Idx].ItemArray;
+                        var salesDataArray = dt.Rows[Idx].ItemArray;
+                        salesDataArray[1] = "Given Below";
+                        ws.Range["A2"].Offset[g_idx].Resize[1, dt.Columns.Count].Value = salesDataArray;
+                        //dt.Rows[Idx].ItemArray;
                         if (dt.Rows[Idx]["Order Details"] != null)
                         {
                             DataTable dataTable2 = (DataTable)JsonConvert.DeserializeObject(dt.Rows[Idx]["Order Details"].ToString(), (typeof(DataTable)));
@@ -195,12 +200,13 @@ namespace VendingMachine
                                 int D_cellrange = 3 + g_idx + dataTable2.Rows.Count;
                                 for (int c_idx = 0; c_idx < dataTable2.Columns.Count; c_idx++)
                                 {
-                                    ws.Range["A3"].Offset[g_idx, c_idx].Value = dataTable2.Columns[c_idx].ColumnName;
+                                    ws.Range["A3"].Offset[g_idx, c_idx+1].Value = textInfo.ToTitleCase(dataTable2.Columns[c_idx].ColumnName.Replace("_"," "));
+                                    ws.Range["A3"].Offset[g_idx].EntireRow.Font.Bold = true;
                                 }
                                 for (int idx = 0; idx < dataTable2.Rows.Count; idx++)
                                 {
                                     f_idx = g_idx + idx;
-                                    ws.Range["A4"].Offset[f_idx].Resize[1, 4].Value = dataTable2.Rows[idx].ItemArray;
+                                    ws.Range["A4"].Offset[f_idx,1].Resize[1, 4].Value = dataTable2.Rows[idx].ItemArray;
                                 }
                                 string _range = string.Format("A{0}:D{1}", A_cellrange, D_cellrange);
                                 Excel.Range range = ws.Range[_range] as Excel.Range;
@@ -211,10 +217,9 @@ namespace VendingMachine
                     }
                     ws.Outline.SummaryRow = XlSummaryRow.xlSummaryAbove;
                     ws.Outline.ShowLevels(1, 0);
-                    ws.Columns.AutoFit();
                 }
-                
 
+                ws.Columns.AutoFit();
                 wb.RefreshAll();
                 excel.Calculate();
                 wb.Save();
