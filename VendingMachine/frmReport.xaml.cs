@@ -186,7 +186,7 @@ namespace VendingMachine
                     int f_idx = 0;
                     for (int Idx = 0; Idx < dt.Rows.Count; Idx++)
                     {
-                        int g_idx = f_idx + Idx;
+                        int g_idx = f_idx + (Idx == 0 ? Idx : 1);
                         var salesDataArray = dt.Rows[Idx].ItemArray;
                         salesDataArray[1] = "Given Below";
                         ws.Range["A2"].Offset[g_idx].Resize[1, dt.Columns.Count].Value = salesDataArray;
